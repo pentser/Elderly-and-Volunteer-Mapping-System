@@ -11,13 +11,19 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
   role: {
     type: String,
     enum: ['admin', 'coordinator', 'volunteer'],
     default: 'volunteer'
   },
-  firstName: String,
-  lastName: String,
   status: {
     type: String,
     enum: ['active', 'inactive'],

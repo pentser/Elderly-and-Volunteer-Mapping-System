@@ -1,0 +1,73 @@
+.visitList {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+  margin: 0 0 10px 0;
+  color: var(--primary-color);
+}
+
+.card p {
+  margin: 5px 0;
+  color: var(--text-color);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.updateButton {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.error {
+  color: var(--error-color);
+  text-align: center;
+  padding: 20px;
+}
+
+.status {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.status.scheduled {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.status.completed {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.status.cancelled {
+  background-color: var(--error-color);
+  color: white;
+} 
