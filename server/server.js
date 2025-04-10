@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const User = require('./models/user');
 
 const app = express();
@@ -40,7 +41,7 @@ app.post('/api/auth/login', async (req, res) => {
     }
 
     // בדיקת סיסמה
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await user.comparePassword(password);
     console.log('Password match:', isMatch);
 
     if (!isMatch) {
@@ -48,7 +49,11 @@ app.post('/api/auth/login', async (req, res) => {
     }
 
     // יצירת טוקן
-    const token = 'test-token'; // בשלב זה נשתמש בטוקן פשוט לבדיקה
+    const token = jwt.sign(
+      { userId: user._id },
+      process.env.JWT_SECRET,
+      { expiresIn: '1d' }
+    );
 
     res.json({
       token,
@@ -73,11 +78,9 @@ const createInitialUser = async () => {
     const existingUser = await User.findOne({ email: 'admin@elderly.com' });
     
     if (!existingUser) {
-      const hashedPassword = await bcrypt.hash('Admin123!', 10);
-      
       const newUser = new User({
         email: 'admin@elderly.com',
-        password: hashedPassword,
+        password: 'Admin123!', // Password will be hashed by the pre-save middleware
         firstName: 'מנהל',
         lastName: 'ראשי',
         role: 'admin'
