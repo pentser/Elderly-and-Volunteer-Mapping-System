@@ -1,0 +1,75 @@
+.container {
+    padding: 40px;
+    font-family: Arial, sans-serif;
+    text-align: right;
+    width: 1100px;
+    }
+
+    .container h2 {
+        padding: 40px;
+        font-family: Arial, sans-serif;
+        text-align: right;
+        margin-right: 50px;
+    }
+
+    .undermaintytle{
+        margin-right: 100px;
+        text-align: right;
+      }
+  
+  .content {
+    margin-top: 0px;
+    line-height: 1.8;
+  }
+
+  .sectionTitle{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-style: italic;
+  }
+  
+  .paragraph {
+    margin-top: 0;        /* מבטל רווח עליון ברירת מחדל של p */
+    margin-bottom: 20px;  /* מרחק אחרי הפסקה */
+    font-style: italic;
+  }
+
+  /* בלוק בואו להתנדב */
+  .features {
+    margin-top: 40px;
+  }
+  
+  .features h3 {
+    font-size: 1.5em;
+    gap: 10px;
+  }
+  
+  /* הוספת אייקון לב */
+  .features h3::after {
+    content: "❤️";
+    font-size: 1.2em;
+  }
+  
+  /* פרטי קשר */
+  .contactInfo {
+    margin-top: 20px;
+    font-size: 0.9em; /* הקטנת פונט ב־2 פיקסלים בערך */
+    color: #333;
+  }
+  
+  .contactButton {
+    margin-top: 15px;
+    margin-right: 20px; /* 👈 זה מה שמזיז את הכפתור ימינה */
+    padding: 5px 20px;
+    background-color: #636161;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+  }
+  
+  .contactButton:hover {
+    background-color: #474646;
+  }
+  

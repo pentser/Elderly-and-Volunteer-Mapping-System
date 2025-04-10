@@ -1,0 +1,45 @@
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 40px;
+    direction: rtl;
+    text-align: right;
+    font-family: Arial, sans-serif;
+  }
+  
+  h2 {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  input {
+    padding: 8px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  button {
+    margin-top: 30px;
+    margin-right: 150px;
+    padding: 10px;
+    font-size: 1em;
+    width: 140px;
+    background-color: #817e7e;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #979292;
+  }
+  

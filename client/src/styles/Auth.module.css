@@ -13,10 +13,13 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .formGroup {
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 .formGroup label {
@@ -35,14 +38,20 @@
 
 .submitButton {
   width: 100%;
-  padding: 0.75rem;
+  margin-top: 20px;
+  padding: 12px;
   background-color: var(--primary-color);
   color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 1rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
   cursor: pointer;
-  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+  width: 120px;
+  height: 40px;
+  align-self: center;
+  text-align: center; 
+  margin-left: 120px;
 }
 
 .submitButton:hover {
