@@ -1,45 +1,65 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const elderlySchema = new Schema({
-  firstName: { 
-    type: String, 
-    required: true 
+const elderlySchema = new mongoose.Schema({
+  firstName: {
+    type: String,
+    required: [true, 'First name is required'],
+    trim: true
   },
-  lastName: { 
-    type: String, 
-    required: true 
-  },
-  location: {
-    type: {
-      type: String,
-      enum: ['Point'],
-      required: true
-    },
-    coordinates: {
-      type: [Number],
-      required: true
-    }
+  lastName: {
+    type: String,
+    required: [true, 'Last name is required'],
+    trim: true
   },
   address: {
-    street: String,
-    city: String,
-    zipCode: String
+    street: {
+      type: String,
+      required: [true, 'Street address is required'],
+      trim: true
+    },
+    city: {
+      type: String,
+      required: [true, 'City is required'],
+      trim: true
+    },
+    coordinates: {
+      type: [Number], // [longitude, latitude]
+      required: [true, 'Coordinates are required'],
+      validate: {
+        validator: function(v) {
+          return v.length === 2;
+        },
+        message: 'Coordinates must be [longitude, latitude]'
+      }
+    }
   },
-  phone: String,
-  emergencyContact: {
-    name: String,
-    phone: String,
-    relation: String
+  contactInfo: {
+    phone: {
+      type: String,
+      required: [true, 'Phone number is required'],
+      trim: true
+    },
+    emergencyContact: {
+      type: String,
+      required: [true, 'Emergency contact is required'],
+      trim: true
+    }
   },
-  needs: [String],
   status: {
     type: String,
-    enum: ['active', 'inactive'],
-    default: 'active'
+    enum: ['green', 'yellow', 'red'],
+    default: 'green',
+    required: [true, 'Status is required']
+  },
+  notes: {
+    type: String,
+    trim: true
   }
-}, { timestamps: true });
+}, {
+  timestamps: true
+});
 
-elderlySchema.index({ location: '2dsphere' });
+// Index for geospatial queries
+elderlySchema.index({ 'address.coordinates': '2dsphere' });
 
 module.exports = mongoose.model('Elderly', elderlySchema); 
