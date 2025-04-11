@@ -155,10 +155,11 @@ server/
 
 Create a `.env` file in the server directory with the following variables:
 
-```
+```env
 PORT=5000
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database
-JWT_SECRET=your-secret-key
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+ADMIN_PASSWORD=your_admin_password
 ```
 
 ## Error Handling

@@ -42,8 +42,8 @@ const createInitialUser = async () => {
     
     if (!existingUser) {
       const newUser = new User({
-        email: 'admin@elderly.com',
-        password: 'Admin123!',
+        email: process.env.ADMIN_EMAIL,
+        password: process.env.ADMIN_PASSWORD,
         firstName: 'מנהל',
         lastName: 'ראשי',
         role: 'admin'
