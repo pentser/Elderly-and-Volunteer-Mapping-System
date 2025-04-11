@@ -1,10 +1,16 @@
+/**
+ * Authentication Routes
+ * Defines endpoints for user authentication and profile management
+ * Includes registration, login, and profile retrieval
+ */
+
 const express = require('express');
 const router = express.Router();
+const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../models/user');
+const { register, login, getMe } = require('../controllers/authController');
 const auth = require('../middleware/auth');
-const authController = require('../controllers/authController');
 
 // הרשמת משתמש ראשון (מנהל מערכת)
 router.post('/register/admin', async (req, res) => {
@@ -62,12 +68,27 @@ router.post('/register/admin', async (req, res) => {
 });
 
 // הרשמת משתמש חדש
-router.post('/register', authController.register);
+/**
+ * @route   POST /api/auth/register
+ * @desc    Register a new user
+ * @access  Public
+ */
+router.post('/register', register);
 
 // התחברות משתמש
-router.post('/login', authController.login);
+/**
+ * @route   POST /api/auth/login
+ * @desc    Login user and get token
+ * @access  Public
+ */
+router.post('/login', login);
 
-// Protected routes
-router.get('/me', auth, authController.getCurrentUser);
+// קבלת פרטי משתמש נוכחי
+/**
+ * @route   GET /api/auth/me
+ * @desc    Get current user profile
+ * @access  Private
+ */
+router.get('/me', auth, getMe);
 
 module.exports = router; 

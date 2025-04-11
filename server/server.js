@@ -1,3 +1,9 @@
+/**
+ * Main Server File
+ * Sets up Express server with middleware and routes
+ * Handles server startup and configuration
+ */
+
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -6,6 +12,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('./models/user');
 const connectDB = require('./config/db');
+const authRoutes = require('./routes/auth');
+const elderlyRoutes = require('./routes/elderly');
 
 const app = express();
 
@@ -18,9 +26,13 @@ connectDB().then(() => {
 app.use(express.json());
 app.use(cors());
 
-// Basic test route
-app.get('/api/test', (req, res) => {
-  res.json({ message: 'Server is working' });
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/elderly', elderlyRoutes);
+
+// Test route
+app.get('/', (req, res) => {
+  res.json({ message: 'Welcome to the Elderly and Volunteer Mapping System API' });
 });
 
 // Create initial admin user
@@ -46,8 +58,6 @@ const createInitialUser = async () => {
 };
 
 // Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/elderly', require('./routes/elderly'));
 app.use('/api/volunteers', require('./routes/volunteer'));
 app.use('/api/visits', require('./routes/visits'));
 

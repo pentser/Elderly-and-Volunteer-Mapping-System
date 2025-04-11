@@ -3,61 +3,53 @@ const mongoose = require('mongoose');
 const elderlySchema = new mongoose.Schema({
   firstName: {
     type: String,
-    required: [true, 'First name is required'],
-    trim: true
+    required: [true, 'נדרש שם פרטי']
   },
   lastName: {
     type: String,
-    required: [true, 'Last name is required'],
-    trim: true
+    required: [true, 'נדרש שם משפחה']
   },
   address: {
     street: {
       type: String,
-      required: [true, 'Street address is required'],
-      trim: true
+      required: [true, 'נדרש שם רחוב']
     },
     city: {
       type: String,
-      required: [true, 'City is required'],
-      trim: true
+      required: [true, 'נדרש שם עיר']
     },
     coordinates: {
       type: [Number], // [longitude, latitude]
-      required: [true, 'Coordinates are required'],
-      validate: {
-        validator: function(v) {
-          return v.length === 2;
-        },
-        message: 'Coordinates must be [longitude, latitude]'
-      }
+      index: '2dsphere',
+      required: [true, 'נדרשות קואורדינטות']
     }
   },
   contactInfo: {
     phone: {
       type: String,
-      required: [true, 'Phone number is required'],
-      trim: true
+      required: [true, 'נדרש מספר טלפון']
     },
     emergencyContact: {
       type: String,
-      required: [true, 'Emergency contact is required'],
-      trim: true
+      required: [true, 'נדרש איש קשר לחירום']
     }
+  },
+  medicalInformation: {
+    type: String,
+    required: [true, 'נדרש מידע רפואי']
   },
   status: {
     type: String,
     enum: ['green', 'yellow', 'red'],
-    default: 'green',
-    required: [true, 'Status is required']
+    default: 'green'
   },
   notes: {
-    type: String,
-    trim: true
+    type: String
+  },
+  comments: {
+    type: String
   }
-}, {
-  timestamps: true
-});
+}, { timestamps: true });
 
 // Index for geospatial queries
 elderlySchema.index({ 'address.coordinates': '2dsphere' });
